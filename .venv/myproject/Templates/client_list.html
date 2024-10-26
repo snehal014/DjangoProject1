@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+
+{% block title %}Client List{% endblock title %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Client List</title>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'register_client' %}" class="btn btn-primary my-2">Add New Client</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in clients %}
+                <tr>
+                    <td>{{ client.name }}</td>
+                    <td>{{ client.email }}</td>
+                    <td>{{ client.contact }}</td>
+                    <td>
+                        <a href="{% url 'edit_client' client.id %}" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="{% url 'delete_client' client.id %}" class="btn btn-sm btn-danger">Delete</a>
+                        <a href="{% url 'add_project' client.id %}" class="btn btn-sm btn-secondary">Add Project </a>
+                        <a href="{% url 'client_projects' client.id %}" class="btn btn-sm btn-info">View Projects</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+{% endblock content %}
+</html>

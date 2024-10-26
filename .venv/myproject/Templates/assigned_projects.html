@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assigned Projects</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}My Assigned Projects{% endblock title %}
+
+    {% block content %}
+    <div class="container">
+        <h2>Assigned Projects</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Client Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for assignment in assignments %}
+                <tr>
+                    <td>{{ assignment.project.name }}</td>
+                    <td>{{ assignment.project.client.name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock content %}
+</body>
+</html>

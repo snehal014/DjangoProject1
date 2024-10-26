@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+
+{% block title %}Add Project for {{ client.name }}{% endblock title %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Add Project for {{ client.name }}</title>
+    <style>
+        .container {
+            background: #fff;
+            padding: 10px;
+            max-width: 480px;
+            margin: auto;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Project for {{ client.name }}</h1>
+
+        <form method="POST" action="{% url 'add_project' client.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Renders form fields automatically in <p> tags -->
+            <button type="submit" class="btn btn-primary">Add Project</button>
+        </form>
+
+        <a href="{% url 'client_list' %}" class="btn btn-sm btn-outline-danger">Back to Client List</a>
+    </div>
+</body>
+{% endblock content %}
+</html>
